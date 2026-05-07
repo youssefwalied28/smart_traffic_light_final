@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "author": "Smart Traffic Light System",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledR",
+      "top": -120,
+      "left": 200,
+      "attrs": { "color": "red", "brightness": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledY",
+      "top": -60,
+      "left": 200,
+      "attrs": { "color": "yellow", "brightness": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledG",
+      "top": 0,
+      "left": 200,
+      "attrs": { "color": "green", "brightness": "1" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 100,
+      "left": 220,
+      "attrs": { "volume": "0.5" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 200,
+      "left": 220,
+      "attrs": { "color": "green", "label": "Pedestrian", "pullUp": "1" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultra1",
+      "top": -120,
+      "left": -150,
+      "attrs": { "distance": "30" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -60,
+      "left": 160,
+      "attrs": { "value": "68" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -40,
+      "left": 160,
+      "attrs": { "value": "68" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -20,
+      "left": 160,
+      "attrs": { "value": "68" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 300,
+      "left": -80,
+      "attrs": { "pins": "i2c", "address": "0x27" }
+    }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", ""],
+    ["esp:RX", "$serialMonitor:TX", ""],
+
+    ["esp:21", "lcd1:SDA", "blue"],
+    ["esp:22", "lcd1:SCL", "yellow"],
+    ["esp:3V3", "lcd1:VCC", "red"],
+    ["esp:GND.5", "lcd1:GND", "black"],
+
+    ["esp:25", "r1:1", "red"],
+    ["r1:2", "ledR:A", "red"],
+    ["ledR:C", "esp:GND.1", "black"],
+
+    ["esp:26", "r2:1", "yellow"],
+    ["r2:2", "ledY:A", "yellow"],
+    ["ledY:C", "esp:GND.1", "black"],
+
+    ["esp:27", "r3:1", "green"],
+    ["r3:2", "ledG:A", "green"],
+    ["ledG:C", "esp:GND.1", "black"],
+
+    ["esp:32", "bz1:1", "orange"],
+    ["esp:GND.2", "bz1:2", "black"],
+
+    ["esp:GND.4", "btn1:2.l", "black"],
+    ["esp:19", "btn1:1.l", "purple"],
+
+    ["esp:5", "ultra1:TRIG", "blue"],
+    ["esp:18", "ultra1:ECHO", "cyan"],
+    ["esp:3V3", "ultra1:VCC", "red"],
+    ["esp:GND.3", "ultra1:GND", "black"]
+  ],
+  "dependencies": {}
+}
