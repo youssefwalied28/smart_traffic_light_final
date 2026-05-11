@@ -544,7 +544,7 @@ static void task_ultrasonic(void *pvParameters)
         if (distance_cm < ULTRA_DETECT_CM) {
             g_vehicle_near = true;
             if (g_state == TS_GREEN && !s_ext_given) {
-                s_ext_given = true;   // block further requests until car leaves 
+                s_ext_given = true;   // block further requests until car leaves
                 if (g_status == ST_NORMAL || g_status == ST_VEHICLE) {
                     g_status = ST_VEHICLE;
                 }
